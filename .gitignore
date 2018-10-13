@@ -2,3 +2,6 @@ inout/*
 db.sqlite3
 *.pyc
 images/*
+scripts/images/*
+scripts/sounds/*
+scripts/videos/*
