@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    {% load static %}
+    <title>EduPack</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'homepage/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'homepage/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{% static 'homepage/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'homepage/css/creative.min.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger" href="#page-top">Home</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <!-- <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#services">Get Started</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#video">Video</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#questions">Questions</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>EduPack</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">A simple tool to make textual learning interesting and easy.</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#services">Find More</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">We've got what you need!</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">Convert text to videos. Get question and answers on the text. Have fun.</p>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section id="services">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">At Your Service</h2>
+            <hr class="my-4">
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <!--Textarea with icon prefix-->
+          <style>
+            body {
+              background: #F0F0F0;
+            }
+            h2 {
+              margin-left: 55px;
+            }
+            textarea {
+              margin-top: 10px;
+              margin-left: 50px;
+              width: 700px;
+              height: 225px;
+              -moz-border-bottom-colors: none;
+              -moz-border-left-colors: none;
+              -moz-border-right-colors: none;
+              -moz-border-top-colors: none;
+              background: none repeat scroll 0 0 rgba(0, 0, 0, 0.07);
+              border-color: -moz-use-text-color #FFFFFF #FFFFFF -moz-use-text-color;
+              border-image: none;
+              border-radius: 6px 6px 6px 6px;
+              border-style: none solid solid none;
+              border-width: medium 1px 1px medium;
+              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12) inset;
+              color: #555555;
+              font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+              font-size: 1em;
+              line-height: 1.4em;
+              padding: 5px 8px;
+              transition: background-color 0.2s ease 0s;
+            }
+            textarea:focus {
+                background: none repeat scroll 0 0 #FFFFFF;
+                outline-width: 0;
+            }
+          </style>
+          <div>
+            <h2>Enter Text Here</h2>
+            <textarea placeholder="What's boring you today?" rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+          </div>
+          <div style = "padding: 50px;">
+            <button type="button" class="btn btn-primary btn-lg btn-block">See the video</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block">Solve questions</button>
+          </div>
+          <!-- <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-paper-plane text-primary mb-3 sr-icon-2"></i>
+              <h3 class="mb-3">Ready to Ship</h3>
+              <p class="text-muted mb-0">You can use this theme as is, or you can make changes!</p>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 text-center">
+            <div class="service-box mt-5 mx-auto">
+              <i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>
+              <h3 class="mb-3">Up to Date</h3>
+              <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+
+    <section class="p-0" id="video">
+      <div align="center" class="container-fluid p-0">
+        <!-- <div class="row no-gutters popup-gallery">
+          <div align="center" class="embed-responsive embed-responsive-16by9"> -->
+        <video width="1000px" style="padding-top:40px;" controls>
+          <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      <!-- </div>
+        </div>
+ -->      </div>
+    </section>
+
+    <!-- <section class="bg-dark text-white">
+      <div align="center" class="embed-responsive embed-responsive-16by9">
+        <video width="400" controls>
+          <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
+          Your browser does not support HTML5 video.
+        </video>
+      </div>
+    </section> -->
+
+    <section id="questions">
+      <div style = "padding-bottom:65px" class="container">
+        <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h2 class="section-heading">Solve 'em all!</h2>
+          <hr class="my-4">
+           <p class="mb-5">You can test your knowledge of the text entered by you using the following questions we have generated for you. <b>Press submit only once you have answered all questions</b></p>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+            <div align="center" class="carousel-item active">
+              <h4>Question 1</h4>
+              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+            </div>
+            <div align="center" class="carousel-item">
+              <h4>Question 2</h4>
+              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+            </div>
+            <div  align="center" class="carousel-item">
+              <h4>Question 3</h4>
+              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+            </div>
+          </div>
+          <style>
+            .carousel-control-prev-icon, .carousel-control-next-icon {
+              height: 25px;
+              width: 25px;
+              outline: #f05f40;
+              background-color: #f05f40;
+              background-size: 100%, 100%;
+              border-radius: 25%;
+              border: 5px solid #f05f40;
+            }
+          </style>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        <div style="padding-bottom: :5px">
+                <button type="button" class="btn btn-outline-success">Submit</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'homepage/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'homepage/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{% static 'homepage/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="{% static 'homepage/vendor/scrollreveal/scrollreveal.min.js' %}"></script>
+    <script src="{% static 'homepage/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{% static 'homepage/js/creative.min.js' %}"></script>
+
+  </body>
+
+</html>
