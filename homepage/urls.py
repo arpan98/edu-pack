@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from homepage.views import show_homepage
+from homepage.views import show_homepage, text_to_video
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', show_homepage)
+    path('', show_homepage),
+    path('api/convert', text_to_video, name="text_to_video")
 ]

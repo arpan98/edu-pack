@@ -136,7 +136,7 @@
             <textarea placeholder="What's boring you today?" rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
           </div>
           <div style = "padding: 50px;">
-            <button type="button" class="btn btn-primary btn-lg btn-block">See the video</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button">See the video</button>
             <button type="button" class="btn btn-secondary btn-lg btn-block">Solve questions</button>
           </div>
           <!-- <div class="col-lg-3 col-md-6 text-center">
@@ -158,13 +158,9 @@
     </section>
 
     <section class="p-0" id="video">
-      <div align="center" class="container-fluid p-0">
+      <div align="center" class="container-fluid p-0" id="video-div">
         <!-- <div class="row no-gutters popup-gallery">
           <div align="center" class="embed-responsive embed-responsive-16by9"> -->
-        <video width="1000px" style="padding-top:40px;" controls>
-          <source src="http://techslides.com/demos/sample-videos/small.mp4" type="video/mp4">
-          Your browser does not support HTML5 video.
-        </video>
       <!-- </div>
         </div>
  -->      </div>
@@ -238,6 +234,31 @@
 
     <!-- Custom scripts for this template -->
     <script src="{% static 'homepage/js/creative.min.js' %}"></script>
+
+    <!--Ajax request-->
+    <script type="text/javascript">
+      $("#convert-button").click(function(){
+          
+          var val = $.trim($("#comment_text").val());
+          if (val == "") {
+            alert("Enter some text first!");
+          }
+          else {
+            $.post("{% url 'text_to_video' %}",
+            {
+                "text": val
+            },
+            function(data, status){
+                console.log(data)
+                //alert("Data: " + data.text + "\nStatus: " + status);
+                $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
+                  <source src='/static/homepage/0.mp4' type='video/mp4'>\
+                  Your browser does not support HTML5 video.\
+                </video>");
+            });
+          }
+      });
+    </script>
 
   </body>
 
