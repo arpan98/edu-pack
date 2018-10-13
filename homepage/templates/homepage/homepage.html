@@ -221,15 +221,43 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <div style="padding-bottom: :5px">
-                <button type="button" class="btn btn-outline-success">Submit</button>
+        <div id = "submit" style="padding-bottom: :5px">
+                <button type="button" class="btn btn-outline-success" >Submit</button>
         </div>
       </div>
     </section>
 
+    <!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Results Time!</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div id = "modalBody" class="modal-body">
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
     <!-- Bootstrap core JavaScript -->
     <script src="{% static 'homepage/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'homepage/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <script>
+		$( "#submit" ).click(function() {
+			var data = "Hello human"
+			$('#exampleModal').modal('show')
+			$("#modalBody").show().html(data);
+		});
+	</script>
 
     <!-- Plugin JavaScript -->
     <script src="{% static 'homepage/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
