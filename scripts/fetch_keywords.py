@@ -4,7 +4,7 @@ from watson_developer_cloud import NaturalLanguageUnderstandingV1
 from watson_developer_cloud.natural_language_understanding_v1 \
   import Features, EntitiesOptions, KeywordsOptions
 
-def run(username, password, version, text, keywords):
+def run(text, username='52a2b5a9-bbc9-41c8-abe8-de887e961ae5', password="HXlpN5EGcrXr", version="2018-03-16", keywords=3):
     natural_language_understanding = NaturalLanguageUnderstandingV1(
       username=username,
       password=password,
@@ -22,9 +22,9 @@ def main():
     parser.add_argument('-p', '--password', default='HXlpN5EGcrXr', type=str, help='password')
     parser.add_argument('-v', '--version', default='2018-03-16', type=str, help='api version')
     parser.add_argument('-t', '--text', type=str, help='text to analyze')
-    parser.add_argument('-k', '--keywords', default=2, type=int, help='number of keywords')
+    parser.add_argument('-k', '--keywords', default=3, type=int, help='number of keywords')
     args = parser.parse_args()
-    res = run(args.username, args.password, args.version, args.text, args.keywords)
+    res = run(args.text, args.username, args.password, args.version, args.keywords)
     print(res)
 
 if __name__ == '__main__':
