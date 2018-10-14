@@ -137,7 +137,7 @@
           </div>
           <div style = "padding: 50px;">
             <button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button" href="#video">See the video</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block nav-link js-scroll-trigger" id="questions-button" href="#questions">Solve questions</button>
+            <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#questions"><button type="button" class="btn btn-secondary btn-lg btn-block nav-link" id="questions-button">Solve questions</button></a>
           </div>
           <!-- <div class="col-lg-3 col-md-6 text-center">
             <div class="service-box mt-5 mx-auto">
@@ -217,7 +217,7 @@
             <span class="sr-only">Next</span>
           </a>
         </div>
-        <div id = "submit" style="padding-bottom: :5px">
+        <div id = "submit" style="display:none; padding-top: 10px; padding-bottom: :5px">
                 <button type="button" class="btn btn-outline-success" >Submit</button>
         </div>
       </div>
@@ -256,7 +256,7 @@
     <script src="{% static 'homepage/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="{% static 'homepage/js/creative.min.js' %}"></script>
+    <script src="{% static 'homepage/js/creative.js' %}"></script>
 
     <!--Ajax request-->
     <script type="text/javascript">
@@ -265,41 +265,30 @@
     	// 	['Q2', 'A2'],
     	// 	['Q3', 'A3']
     	// ]
-     //  $( "#questions-button" ).click(function(){
-     //  	  var num = 2, i;
-     //  	  var write;
-     //  	  write = "<div align='center' class='carousel-item active'>\
-     //  	  	<h4>" + "Question "+ (1) + "</h4>\
-     //  	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+1+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-     //  	  	</div>"
-     //  	  for( i = 2; i<=num; i++) {
-     //  	  	write += "<div align='center' class='carousel-item'>\
-     //  	  	<h4>" + "Question "+ (i) + "</h4>\
-     //  	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+i+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-     //  	  	</div>"
-     //  	  }
-     //  	   console.log(write)
+      var ans = [];
+      $( "#questions-button" ).click(function(){
+        generate_questions(ans);
+      });
 
-     //  	  $("#question-scroll").html(write);
-     //  });
-      var ans = []
       function generate_questions(data) {
         var num = data.length, i;
-        ans = data;
         var write;
         write = "<div align='center' class='carousel-item active'>\
           <h4>" + "Qn.1 " + data[0].question + "</h4>\
-          <textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q1' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-          </div>"
+          <input type='text' align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q1' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></input>\
+          </div>\
+          <p style='display:none; color:green' class='answers'>Correct answer: " + data[0].answer + "</p>"
         for( i = 1; i<num; i++) {
           write += "<div align='center' class='carousel-item'>\
           <h4>" + "Qn." + (i+1) + " " + data[i].question + "</h4>\
-          <textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+(i+1)+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-          </div>"
+          <input type='text' align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+(i+1)+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></input>\
+          </div>\
+          <p style='display:none; color:green' class='answers'>Correct answer: " + data[i].answer + "</p>"
         }
-         console.log(write)
+         console.log(write);
 
         $("#question-scroll").html(write);
+
       }
 
 
@@ -309,11 +298,12 @@
 	  	  var i, x;
 	  	  for(i = 0; i < ans.length; i++) {
 	  	  	x = document.getElementById("Q"+(i+1)).value;
-	  	  	if (x==ans[i].answer) {
+	  	  	if (x.toLowerCase()==ans[i].answer.toLowerCase()) {
 	  	  		score++;
 	  	  	}
 	  	  }
-		  $('#exampleModal').modal('show')
+		  $('#exampleModal').modal('show');
+      $('.answers').show();
 		  $("#modalBody").show().html("Your score is "+score+"/"+ans.length);
 	  });
 
@@ -329,13 +319,14 @@
 	            "text": val
 	        },
 	        function(data, status){
+              $("#submit").show();
 	            console.log(data)
 	            //alert("Data: " + data.text + "\nStatus: " + status);
 	            $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
 	              <source src='/static/homepage/0.mp4' type='video/mp4'>\
 	              Your browser does not support HTML5 video.\
 	            </video>");
-              generate_questions(data);
+              ans = data;
 	        });
 	      }
 	  });
