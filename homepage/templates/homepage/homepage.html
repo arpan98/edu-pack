@@ -136,7 +136,7 @@
             <textarea placeholder="What's boring you today?" rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
           </div>
           <div style = "padding: 50px;">
-            <button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button" href="#video">See the video</button>
+            <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#video"><button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button" href="#video">See the video</button></a>
             <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#questions"><button type="button" class="btn btn-secondary btn-lg btn-block nav-link" id="questions-button">Solve questions</button></a>
           </div>
           <!-- <div class="col-lg-3 col-md-6 text-center">
@@ -284,6 +284,7 @@
     	// ]
       var ans = [];
       $( "#questions-button" ).click(function(){
+        console.log(ans);
         generate_questions(ans);
       });
 
@@ -293,16 +294,15 @@
         write = "<div align='center' class='carousel-item active'>\
           <h4>" + "Qn.1 " + data[0].question + "</h4>\
           <input type='text' align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q1' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></input>\
-          </div>\
-          <p style='display:none; color:green' class='answers'>Correct answer: " + data[0].answer + "</p>"
+          <p style='display:none; color:green' class='answers'>Correct answer: " + data[0].answer + "</p>\
+          </div>"
         for( i = 1; i<num; i++) {
           write += "<div align='center' class='carousel-item'>\
           <h4>" + "Qn." + (i+1) + " " + data[i].question + "</h4>\
           <input type='text' align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+(i+1)+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></input>\
-          </div>\
-          <p style='display:none; color:green' class='answers'>Correct answer: " + data[i].answer + "</p>"
+          <p style='display:none; color:green' class='answers'>Correct answer: " + data[i].answer + "</p>\
+          </div>"
         }
-         console.log(write);
 
         $("#question-scroll").html(write);
 
