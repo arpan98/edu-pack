@@ -159,29 +159,29 @@
 
     <section class="p-0" id="video">
       <div align="center" class="container-fluid p-0" id="video-div">
-      	<style type="text/css">
-      		.loader {
-			    border: 16px solid #f05f40; /* Light grey */
-			    border-top: 16px solid #A9A9A9; /* Blue */
-			    border-radius: 50%;
-			    width: 500px;
-			    height: 500px;
-			    animation: spin 3s linear infinite;
-			    display: none;
-			}
+    </section>
+    <style type="text/css">
+          .loader {
+          border: 16px solid #f05f40; /* Light grey */
+          border-top: 16px solid #A9A9A9; /* Blue */
+          border-radius: 50%;
+          width: 500px;
+          height: 500px;
+          animation: spin 3s linear infinite;
+          display: none;
+      }
 
-			@keyframes spin {
-			    0% { transform: rotate(0deg); }
-			    100% { transform: rotate(360deg); }
-			}
-      	</style>
-      	<div align="center" id="loader-guys" class="loader"></div>
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+        </style>
+        <div align="center" id="loader-guys" class="loader container-fluid p-0"></div>
         <!-- <div class="row no-gutters popup-gallery">
           <div align="center" class="embed-responsive embed-responsive-16by9"> -->
       <!-- </div>
         </div>
- -->      </div>
-    </section>
+ -->    </div>
 
     <!-- <section class="bg-dark text-white">
       <div align="center" class="embed-responsive embed-responsive-16by9">
@@ -335,6 +335,7 @@
 	        $("#modalBody").show().html("Enter some text first!");
 	      }
 	      else {
+          $("#video-div").hide();
           $("#questions").hide();
 	      	$("#loader-guys").css("display", "block");
 	        $.post("{% url 'text_to_video' %}",
@@ -346,6 +347,7 @@
 	            console.log(data)
 	            $("#loader-guys").css("display", "none");
 	            //alert("Data: " + data.text + "\nStatus: " + status);
+              $("#video-div").show();
 	            $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
 	              <source src='/static/homepage/0.mp4' type='video/mp4'>\
 	              Your browser does not support HTML5 video.\
