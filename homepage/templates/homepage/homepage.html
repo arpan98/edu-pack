@@ -136,8 +136,8 @@
             <textarea placeholder="What's boring you today?" rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
           </div>
           <div style = "padding: 50px;">
-            <button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button">See the video</button>
-            <button type="button" class="btn btn-secondary btn-lg btn-block">Solve questions</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button" href="#video">See the video</button>
+            <button type="button" class="btn btn-secondary btn-lg btn-block nav-link js-scroll-trigger" id="questions-button" href="#questions">Solve questions</button>
           </div>
           <!-- <div class="col-lg-3 col-md-6 text-center">
             <div class="service-box mt-5 mx-auto">
@@ -183,19 +183,19 @@
           <hr class="my-4">
            <p class="mb-5">You can test your knowledge of the text entered by you using the following questions we have generated for you. <b>Press submit only once you have answered all questions</b></p>
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-          <div class="carousel-inner">
-            <div align="center" class="carousel-item active">
+          <div id = "question-scroll" class="carousel-inner">
+            <!-- <div align="center" class="carousel-item active">
               <h4>Question 1</h4>
-              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+              <textarea id = "Q1" align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
             </div>
             <div align="center" class="carousel-item">
               <h4>Question 2</h4>
-              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id = "Q2" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
             </div>
             <div  align="center" class="carousel-item">
               <h4>Question 3</h4>
-              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
-            </div>
+              <textarea align="center" style="width: 350px;height: 35px;" placeholder="Your answer goes here.." rows="40" name="" id = "Q3" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
+            </div> -->
           </div>
           <style>
             .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -248,11 +248,6 @@
     <script src="{% static 'homepage/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
     <script>
-		$( "#submit" ).click(function() {
-			var data = "Hello human"
-			$('#exampleModal').modal('show')
-			$("#modalBody").show().html(data);
-		});
 	</script>
 
     <!-- Plugin JavaScript -->
@@ -265,27 +260,65 @@
 
     <!--Ajax request-->
     <script type="text/javascript">
-      $("#convert-button").click(function(){
-          
-          var val = $.trim($("#comment_text").val());
-          if (val == "") {
-            alert("Enter some text first!");
-          }
-          else {
-            $.post("{% url 'text_to_video' %}",
-            {
-                "text": val
-            },
-            function(data, status){
-                console.log(data)
-                //alert("Data: " + data.text + "\nStatus: " + status);
-                $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
-                  <source src='/static/homepage/0.mp4' type='video/mp4'>\
-                  Your browser does not support HTML5 video.\
-                </video>");
-            });
-          }
+    	var ans = [
+    		['Q1', 'A1'],
+    		['Q2', 'A2'],
+    		['Q3', 'A3']
+    	]
+      $( "#questions-button" ).click(function(){
+      	  var num = 2, i;
+      	  var write;
+      	  write = "<div align='center' class='carousel-item active'>\
+      	  	<h4>" + "Question "+ (1) + "</h4>\
+      	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+1+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+      	  	</div>"
+      	  for( i = 2; i<=num; i++) {
+      	  	write += "<div align='center' class='carousel-item'>\
+      	  	<h4>" + "Question "+ (i) + "</h4>\
+      	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+i+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+      	  	</div>"
+      	  }
+      	   console.log(write)
+
+      	  $("#question-scroll").html(write);
       });
+
+
+	  $( "#submit" ).click(function() {
+	  	  console.log(ans.length);
+	  	  var score = 0;
+	  	  var i, x;
+	  	  for(i = 0; i < ans.length; i++) {
+	  	  	x = document.getElementById("Q"+(i+1)).value;
+	  	  	if (x==ans[i][1]) {
+	  	  		score++;
+	  	  	}
+	  	  }
+		  $('#exampleModal').modal('show')
+		  $("#modalBody").show().html("Your score is "+score+"/"+ans.length);
+	  });
+
+	  $("#convert-button").click(function(){
+	      
+	      var val = $.trim($("#comment_text").val());
+	      if (val == "") {
+	        $("#modalBody").show().html("Enter some text first!");
+	      }
+	      else {
+	        $.post("{% url 'text_to_video' %}",
+	        {
+	            "text": val
+	        },
+	        function(data, status){
+	            console.log(data)
+	            //alert("Data: " + data.text + "\nStatus: " + status);
+	            $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
+	              <source src='/static/homepage/0.mp4' type='video/mp4'>\
+	              Your browser does not support HTML5 video.\
+	            </video>");
+	        });
+	      }
+	  });
     </script>
 
   </body>
