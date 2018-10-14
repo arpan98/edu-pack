@@ -136,7 +136,7 @@
             <textarea placeholder="What's boring you today?" rows="40" name="" id="comment_text" cols="40" class="ui-autocomplete-input" autocomplete="on" role="textbox" aria-autocomplete="list" aria-haspopup="true" style="border: none; border-color: Transparent; border-bottom: 2px solid red;"></textarea>
           </div>
           <div style = "padding: 50px;">
-            <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#video"><button type="button" class="btn btn-primary btn-lg btn-block" id="convert-button" href="#video">See the video</button></a>
+            <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#video"><button type="button" class="btn btn-secondary btn-lg btn-block" id="convert-button" href="#video">See the video</button></a>
             <a class="btn btn-secondary btn-lg btn-block js-scroll-trigger" href="#questions"><button type="button" class="btn btn-secondary btn-lg btn-block nav-link" id="questions-button">Solve questions</button></a>
           </div>
           <!-- <div class="col-lg-3 col-md-6 text-center">
@@ -285,8 +285,15 @@
       var ans = [];
       $( "#questions-button" ).click(function(){
         console.log(ans);
-        $("#questions").show();
-        generate_questions(ans);
+        var val = $.trim($("#comment_text").val());
+	      if (val == "") {
+	      	$('#exampleModal').modal('show')
+	      	$("#modalTitle").show().html("Oops");
+	        $("#modalBody").show().html("Enter some text first!");
+	      } else {
+	      	$("#questions").show();
+        	generate_questions(ans);
+	      }
       });
 
       function generate_questions(data) {

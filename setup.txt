@@ -1,0 +1,30 @@
+Make sure you have Python 3 installed. If not, https://www.python.org/downloads/
+
+Install pip3 https://stackoverflow.com/questions/6587507/how-to-install-pip-with-python-3
+
+Using pip3 create a Python3 virtual environment 
+
+"virtualenv --python=<link/to/python> ./inout"
+
+"source inout/bin/activate"
+
+"pip3 install -r requirements.txt"
+
+You have will have to install punkt and ImageMagicks separately. 
+
+For punkt:
+
+Run the python3 shell and do:
+
+"import nltk"
+"nltk.download('punkt')"
+
+For ImageMagicks:
+
+https://wiki.python.org/moin/ImageMagick
+
+Now you're all set to go!
+
+"python3 manage.py runserver 0.0.0.0:8000" 
+
+Open "localhost:8000" in your browser
