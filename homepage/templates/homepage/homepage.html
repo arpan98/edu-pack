@@ -159,6 +159,23 @@
 
     <section class="p-0" id="video">
       <div align="center" class="container-fluid p-0" id="video-div">
+      	<style type="text/css">
+      		.loader {
+			    border: 16px solid #f05f40; /* Light grey */
+			    border-top: 16px solid #A9A9A9; /* Blue */
+			    border-radius: 50%;
+			    width: 500px;
+			    height: 500px;
+			    animation: spin 3s linear infinite;
+			    display: none;
+			}
+
+			@keyframes spin {
+			    0% { transform: rotate(0deg); }
+			    100% { transform: rotate(360deg); }
+			}
+      	</style>
+      	<div align="center" id="loader-guys" class="loader"></div>
         <!-- <div class="row no-gutters popup-gallery">
           <div align="center" class="embed-responsive embed-responsive-16by9"> -->
       <!-- </div>
@@ -228,7 +245,7 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Results Time!</h5>
+	        <h5 id = "modalTitle" class="modal-title" id="exampleModalLabel">Results Time!</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -302,7 +319,8 @@
 	  	  		score++;
 	  	  	}
 	  	  }
-		  $('#exampleModal').modal('show');
+		  $('#exampleModal').modal('show')
+		  $("#modalTitle").show().html("Result Time");
       $('.answers').show();
 		  $("#modalBody").show().html("Your score is "+score+"/"+ans.length);
 	  });
@@ -311,9 +329,12 @@
 	      
 	      var val = $.trim($("#comment_text").val());
 	      if (val == "") {
+	      	$('#exampleModal').modal('show')
+	      	$("#modalTitle").show().html("Oops");
 	        $("#modalBody").show().html("Enter some text first!");
 	      }
 	      else {
+	      	$("#loader-guys").css("display", "block");
 	        $.post("{% url 'text_to_video' %}",
 	        {
 	            "text": val
@@ -321,6 +342,7 @@
 	        function(data, status){
               $("#submit").show();
 	            console.log(data)
+	            $("#loader-guys").css("display", "none");
 	            //alert("Data: " + data.text + "\nStatus: " + status);
 	            $("#video-div").html("<video width='1000px' style='padding-top:40px;' controls>\
 	              <source src='/static/homepage/0.mp4' type='video/mp4'>\
