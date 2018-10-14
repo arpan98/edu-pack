@@ -12,6 +12,8 @@ import nltk
 from moviepy.editor import *
 from gtts import gTTS
 
+import random
+
 def format_text(string): #break in to lines to fit the screen
 	words=string.split()
 	output=''
@@ -80,4 +82,15 @@ def text_to_video(request):
 		print("Saving Video!")
 		result_with_audio.write_videofile('homepage/static/homepage/0.mp4',codec='libx264',fps=30)
 		print("Done!")
-		return HttpResponse(json.dumps(text), content_type="application/json")
+
+		question_answers = []
+		if (len(sentences)<=3) :
+			for i in range(len(sentences)):
+				question_answers.append({"question":sentences[i].replace(word_list[i],"__________"),"answer":word_list[i]})
+		else :
+			values = random.sample(range(0, len(sentences)-1), 3)
+			for i in range(3):
+				question_answers.append({"question":sentences[values[i]].replace(word_list[values[i]],"__________"),"answer":word_list[values[i]]})
+
+		print(question_answers)
+		return HttpResponse(json.dumps(question_answers), content_type="application/json")

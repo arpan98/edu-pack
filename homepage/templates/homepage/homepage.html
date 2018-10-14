@@ -260,28 +260,47 @@
 
     <!--Ajax request-->
     <script type="text/javascript">
-    	var ans = [
-    		['Q1', 'A1'],
-    		['Q2', 'A2'],
-    		['Q3', 'A3']
-    	]
-      $( "#questions-button" ).click(function(){
-      	  var num = 2, i;
-      	  var write;
-      	  write = "<div align='center' class='carousel-item active'>\
-      	  	<h4>" + "Question "+ (1) + "</h4>\
-      	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+1+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-      	  	</div>"
-      	  for( i = 2; i<=num; i++) {
-      	  	write += "<div align='center' class='carousel-item'>\
-      	  	<h4>" + "Question "+ (i) + "</h4>\
-      	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+i+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
-      	  	</div>"
-      	  }
-      	   console.log(write)
+    	// var ans = [
+    	// 	['Q1', 'A1'],
+    	// 	['Q2', 'A2'],
+    	// 	['Q3', 'A3']
+    	// ]
+     //  $( "#questions-button" ).click(function(){
+     //  	  var num = 2, i;
+     //  	  var write;
+     //  	  write = "<div align='center' class='carousel-item active'>\
+     //  	  	<h4>" + "Question "+ (1) + "</h4>\
+     //  	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+1+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+     //  	  	</div>"
+     //  	  for( i = 2; i<=num; i++) {
+     //  	  	write += "<div align='center' class='carousel-item'>\
+     //  	  	<h4>" + "Question "+ (i) + "</h4>\
+     //  	  	<textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+i+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+     //  	  	</div>"
+     //  	  }
+     //  	   console.log(write)
 
-      	  $("#question-scroll").html(write);
-      });
+     //  	  $("#question-scroll").html(write);
+     //  });
+      var ans = []
+      function generate_questions(data) {
+        var num = data.length, i;
+        ans = data;
+        var write;
+        write = "<div align='center' class='carousel-item active'>\
+          <h4>" + "Qn.1 " + data[0].question + "</h4>\
+          <textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q1' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+          </div>"
+        for( i = 1; i<num; i++) {
+          write += "<div align='center' class='carousel-item'>\
+          <h4>" + "Qn." + (i+1) + " " + data[i].question + "</h4>\
+          <textarea align='center' style='width: 350px;height: 35px;' placeholder='Your answer goes here..' rows='40' name='' id = 'Q"+(i+1)+"' cols='40' class='ui-autocomplete-input' autocomplete='on' role='textbox' aria-autocomplete='list'aria-haspopup='true' style='border: none; border-color: Transparent; border-bottom: 2px solid red;'></textarea>\
+          </div>"
+        }
+         console.log(write)
+
+        $("#question-scroll").html(write);
+      }
 
 
 	  $( "#submit" ).click(function() {
@@ -290,7 +309,7 @@
 	  	  var i, x;
 	  	  for(i = 0; i < ans.length; i++) {
 	  	  	x = document.getElementById("Q"+(i+1)).value;
-	  	  	if (x==ans[i][1]) {
+	  	  	if (x==ans[i].answer) {
 	  	  		score++;
 	  	  	}
 	  	  }
@@ -316,6 +335,7 @@
 	              <source src='/static/homepage/0.mp4' type='video/mp4'>\
 	              Your browser does not support HTML5 video.\
 	            </video>");
+              generate_questions(data);
 	        });
 	      }
 	  });
