@@ -192,7 +192,7 @@
       </div>
     </section> -->
 
-    <section id="questions">
+    <section id="questions" style="display:none">
       <div style = "padding-bottom:65px" class="container">
         <div class="row">
         <div class="col-lg-8 mx-auto text-center">
@@ -285,6 +285,7 @@
       var ans = [];
       $( "#questions-button" ).click(function(){
         console.log(ans);
+        $("#questions").show();
         generate_questions(ans);
       });
 
@@ -334,6 +335,7 @@
 	        $("#modalBody").show().html("Enter some text first!");
 	      }
 	      else {
+          $("#questions").hide();
 	      	$("#loader-guys").css("display", "block");
 	        $.post("{% url 'text_to_video' %}",
 	        {
