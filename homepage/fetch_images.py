@@ -37,7 +37,7 @@ def get_soup(url, header):
     return BeautifulSoup(response, 'html.parser')
 
 def get_query_url(query):
-    return "https://www.google.co.in/search?q=%s&source=lnms&tbm=isch" % query
+    return "https://www.google.co.in/search?tbs=isz:m,ic:color&q=%s&source=lnms&tbm=isch" % query
 
 def extract_images_from_soup(soup):
     image_elements = soup.find_all("div", {"class": "rg_meta"})
@@ -72,8 +72,9 @@ def save_image(raw_image, image_type, save_directory, uid, image_number):
 def download_images_to_dir(images, save_directory, num_images, uid, im_num):
     for i, (url, image_type) in enumerate(images):
         try:
-            raw_image = get_raw_image(url)
-            return save_image(raw_image, image_type, save_directory, uid, im_num)
+            if image_type in ['jpg', 'png']:
+                raw_image = get_raw_image(url)
+                return save_image(raw_image, image_type, save_directory, uid, im_num)
         except Exception as e:
             print(e)
 

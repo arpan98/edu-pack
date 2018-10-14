@@ -41,7 +41,7 @@ def text_to_video(request):
 		word_list = []
 		text_clip_list = []
 		video_clip_list = []
-		audio_clip_list = []
+		# audio_clip_list = []
 
 		for i in range(len(sentences)):
 			#TODO add try catch
@@ -54,30 +54,30 @@ def text_to_video(request):
 				current_keyword = keywords[j]["text"]
 			word_list.append(current_keyword)
 			
-			audio_clip = gTTS(text=sentences[i], lang='en', slow=False)
-			audio_clip.save('sounds/'+str(i)+'.mp3')
-			print(sentences[i] + "audio file saved")
+			# audio_clip = gTTS(text=sentences[i], lang='en', slow=False)
+			# audio_clip.save('sounds/'+str(i)+'.mp3')
+			# print(sentences[i] + "audio file saved")
 			
-			current_audio_clip=AudioFileClip('sounds/'+str(i)+'.mp3')
-			audio_clip_list.append(current_audio_clip)
+			# current_audio_clip=AudioFileClip('sounds/'+str(i)+'.mp3')
+			# audio_clip_list.append(current_audio_clip)
 
 			#TODO modify time duration
-			current_text_clip = TextClip(format_text(sentences[i]),font='Montserrat',fontsize=25,color='white',bg_color='black',stroke_width=5).set_duration(current_audio_clip.duration)
+			current_text_clip = TextClip(format_text(sentences[i]),font='Montserrat',fontsize=25,color='white',bg_color='black',stroke_width=5).set_duration(len(sentences[i]) * 0.08)
 			text_clip_list.append(current_text_clip)
 
-			savepath = fetch_images.run(current_keyword,i)
+			savepath = fetch_images.run(current_keyword,i,num_images=3)
 			print(savepath)
-			current_video_clip = ImageClip(savepath).set_opacity(1).set_duration(current_audio_clip.duration).set_fps(30).crossfadein(0.5)
+			current_video_clip = ImageClip(savepath).set_opacity(1).set_duration(len(sentences[i]) * 0.08).set_fps(30).crossfadein(0.5)
 			video_clip_list.append(current_video_clip)
 
 		text_clip=concatenate_videoclips(text_clip_list).set_position('bottom')
 		video_clip=concatenate_videoclips(video_clip_list, method='compose').set_position(('center','top'))
 		result=CompositeVideoClip([video_clip,text_clip])
 
-		audio_clip=concatenate_audioclips(audio_clip_list)
-		result_with_audio=result.set_audio(audio_clip)
+		# audio_clip=concatenate_audioclips(audio_clip_list)
+		# result_with_audio=result.set_audio(audio_clip)
 
 		print("Saving Video!")
-		result_with_audio.write_videofile('homepage/static/homepage/0.mp4',codec='libx264',fps=30)
+		result.write_videofile('homepage/static/homepage/0.mp4',codec='libx264',fps=10,audio=False,threads=4,preset='ultrafast')
 		print("Done!")
 		return HttpResponse(json.dumps(text), content_type="application/json")
