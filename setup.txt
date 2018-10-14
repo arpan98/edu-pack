@@ -10,7 +10,7 @@ Using pip3 create a Python3 virtual environment
 
 "pip3 install -r requirements.txt"
 
-You have will have to install punkt and ImageMagicks separately. 
+You have will have to install punkt and ImageMagick separately. 
 
 For punkt:
 
@@ -19,9 +19,11 @@ Run the python3 shell and do:
 "import nltk"
 "nltk.download('punkt')"
 
-For ImageMagicks:
+For ImageMagick:
 
 https://wiki.python.org/moin/ImageMagick
+
+Even after this, you might have a permission issue which can be fixed by editing the config file of ImageMagick
 
 Now you're all set to go!
 
